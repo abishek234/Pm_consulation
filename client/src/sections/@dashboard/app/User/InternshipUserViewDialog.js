@@ -132,7 +132,7 @@ export default function InternshipUserViewDialog({ open, onClose, internship, in
     const fetchInternshipDetails = async () => {
         setLoading(true);
         try {
-            const response = await axios.get(`http://localhost:7070/api/internships/internships/${internshipId}`);
+            const response = await axios.get(`https://pm-consulation.onrender.com/api/internships/internships/${internshipId}`);
             const processedData = await processInternshipData(response.data);
             setInternshipData(processedData);
         } catch (error) {
@@ -149,7 +149,7 @@ export default function InternshipUserViewDialog({ open, onClose, internship, in
                 try {
                     const sectorPromises = data.sectors.map(async (sectorId) => {
                         if (typeof sectorId === 'string') {
-                            const sectorResponse = await axios.get(`http://localhost:7070/api/sectors/${sectorId}`);
+                            const sectorResponse = await axios.get(`https://pm-consulation.onrender.com/api/sectors/${sectorId}`);
                             return sectorResponse.data.sector;
                         }
                         return sectorId;

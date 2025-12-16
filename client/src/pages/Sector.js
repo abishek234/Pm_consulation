@@ -263,7 +263,7 @@ export default function Sector() {
   const fetchSectors = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:7070/api/sectors');
+      const response = await axios.get('https://pm-consulation.onrender.com/api/sectors');
 
       if (response.data && response.data.success && Array.isArray(response.data.sectors)) {
         setSectors(response.data.sectors);
@@ -356,7 +356,7 @@ export default function Sector() {
     }
 
     try {
-      await axios.post('http://localhost:7070/api/sectors', { name });
+      await axios.post('https://pm-consulation.onrender.com/api/sectors', { name });
       toast.success('Sector added successfully');
       fetchSectors();
       handleCloseModal();
@@ -373,7 +373,7 @@ export default function Sector() {
     }
 
     try {
-      const response = await axios.put(`http://localhost:7070/api/sectors/${editingUserId}`, { name });
+      const response = await axios.put(`https://pm-consulation.onrender.com/api/sectors/${editingUserId}`, { name });
       toast.success(response.data.message || 'Sector updated successfully');
       fetchSectors();
       handleCloseModal();
@@ -386,7 +386,7 @@ export default function Sector() {
   const handleDeleteSector = async (userId) => {
     if (window.confirm('Are you sure you want to delete this sector?')) {
       try {
-        const response = await axios.delete(`http://localhost:7070/api/sectors/${userId}`);
+        const response = await axios.delete(`https://pm-consulation.onrender.com/api/sectors/${userId}`);
         toast.success(response.data.message || 'Sector deleted successfully');
         fetchSectors();
       } catch (error) {

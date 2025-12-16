@@ -226,7 +226,7 @@ export default function User() {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:7070/api/auth/admin/users', {
+      const response = await axios.get('https://pm-consulation.onrender.com/api/auth/admin/users', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
