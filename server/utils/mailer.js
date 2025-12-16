@@ -17,7 +17,7 @@ async function sendEmail(to, subject, html, textContent = null, attachments = []
     const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
     
     sendSmtpEmail.sender = {
-      email: 'noreply@pminternship.com',
+      email: 'abishek.cs21@bitsathy.ac.in',
       name: 'Internship Platform'
     };
     
