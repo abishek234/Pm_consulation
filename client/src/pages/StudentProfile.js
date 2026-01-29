@@ -244,7 +244,7 @@ const StudentProfileCreation = () => {
   const fetchSectors = async () => {
     setLoadingSectors(true);
     try {
-      const response = await axios.get('https://pm-consulation.onrender.com/api/sectors');
+      const response = await axios.get('http://localhost:7070/api/sectors');
       setAvailableSectors(response.data.sectors || []);
     } catch (error) {
       console.error('Error fetching sectors:', error);
@@ -595,14 +595,14 @@ const StudentProfileCreation = () => {
       setIsLoadingRecommendations(true);
 
       await axios.post(
-        'https://pm-consulation.onrender.com/api/auth/profile/create',
+        'http://localhost:7070/api/auth/profile/create',
         profileData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
       const userId = localStorage.getItem('id');
       const recommendationsResponse = await axios.get(
-        `https://pm-consulation.onrender.com/api/internships/recommendations/${userId}`,
+        `http://localhost:7070/api/internships/recommendations/${userId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 

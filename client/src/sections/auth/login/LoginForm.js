@@ -128,7 +128,7 @@ export default function LoginForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post('https://pm-consulation.onrender.com/api/auth/login', data);
+      const response = await axios.post('http://localhost:7070/api/auth/login', data);
       if (response.status === 200) {
         setEmail(data.email);
         setOtpDialogOpen(true);
@@ -153,7 +153,7 @@ export default function LoginForm() {
   const handleVerifyOtp = async () => {
     setLoadingOtp(true);
     try {
-      const response = await axios.post('https://pm-consulation.onrender.com/api/auth/verification-otp', {
+      const response = await axios.post('http://localhost:7070/api/auth/verification-otp', {
         email,
         userOtp: otp,
       });

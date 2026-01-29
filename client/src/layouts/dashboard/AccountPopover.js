@@ -67,7 +67,7 @@ export default function AccountPopover() {
     // Fetch user name from API if available
     const fetchUserName = async () => {
       try {
-        const response = await fetch(`https://pm-consulation.onrender.com/api/auth/profile/${userId}`);
+        const response = await fetch(`http://localhost:7070/api/auth/profile/${userId}`);
         const data = await response.json();
         if (data && data.name) {
           setUserName(data.name);

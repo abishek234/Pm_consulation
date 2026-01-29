@@ -237,7 +237,7 @@ export default function Internship() {
     const fetchSectors = async () => {
         setLoadingSectors(true);
         try {
-            const response = await axios.get('https://pm-consulation.onrender.com/api/sectors');
+            const response = await axios.get('http://localhost:7070/api/sectors');
             setSectors(response.data.sectors || []);
         } catch (error) {
             console.error("Error fetching sectors:", error);
@@ -250,7 +250,7 @@ export default function Internship() {
     const fetchInternships = async () => {
         setLoading(true);
         try {
-            const response = await axios.get('https://pm-consulation.onrender.com/api/internships/internships');
+            const response = await axios.get('http://localhost:7070/api/internships/internships');
             const internshipsData = response.data.internships || [];
             
             const processedInternships = await Promise.all(
@@ -261,7 +261,7 @@ export default function Internship() {
                             try {
                                 const sectorPromises = internship.sectors.map(async (sectorId) => {
                                     if (typeof sectorId === 'string') {
-                                        const sectorResponse = await axios.get(`https://pm-consulation.onrender.com/api/sectors/${sectorId}`);
+                                        const sectorResponse = await axios.get(`http://localhost:7070/api/sectors/${sectorId}`);
                                         return sectorResponse.data.sector;
                                     }
                                     return sectorId;
@@ -327,7 +327,7 @@ export default function Internship() {
     const handleDeleteInternship = async (internshipId) => {
         if (window.confirm("Are you sure you want to delete this internship?")) {
             try {
-                await axios.delete(`https://pm-consulation.onrender.com/api/internships/admin/internships/${internshipId}`, { headers: { Authorization: `Bearer ${token}` } });
+                await axios.delete(`http://localhost:7070/api/internships/admin/internships/${internshipId}`, { headers: { Authorization: `Bearer ${token}` } });
                 toast.success("Internship deleted successfully");
                 fetchInternships();
                 setSelected(prev => prev.filter(id => id !== internshipId));
@@ -400,7 +400,7 @@ export default function Internship() {
 
     const handleDownloadTemplate = async () => {
         try {
-            const response = await axios.get('https://pm-consulation.onrender.com/api/internships/admin/internships/template', {
+            const response = await axios.get('http://localhost:7070/api/internships/admin/internships/template', {
                 headers: { Authorization: `Bearer ${token}` }, responseType: 'blob'
             });
             const blob = new Blob([response.data]);
